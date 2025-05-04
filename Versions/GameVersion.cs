@@ -20,6 +20,8 @@ namespace DSO.Versions
 	{
 		Auto,
 		TGE10,
+		VSide,
+		MBXP,
 		TGE14,
 		TCON,
 		Tribes2,
@@ -38,6 +40,8 @@ namespace DSO.Versions
 		{
 			GameIdentifier.Auto => "Automatically determines the game from script file.",
 			GameIdentifier.TGE10 => "Torque Game Engine 1.0-1.3",
+			GameIdentifier.VSide => "VSide",
+			GameIdentifier.MBXP => "Marble Blast XP",
 			GameIdentifier.TGE14 => "Torque Game Engine 1.4",
 			GameIdentifier.TCON => "Torque Constructor",
 			GameIdentifier.Tribes2 => "Tribes 2",
@@ -52,6 +56,8 @@ namespace DSO.Versions
 		{
 			GameIdentifier.Auto => 0,
 			GameIdentifier.TGE10 => GameVersions.TGE10,
+			GameIdentifier.VSide => GameVersions.VSIDE,
+			GameIdentifier.MBXP => GameVersions.MBXP,
 			GameIdentifier.TGE14 => GameVersions.TGE14,
 			GameIdentifier.TCON => GameVersions.TCON,
 			GameIdentifier.Tribes2 => GameVersions.T2,
@@ -65,6 +71,8 @@ namespace DSO.Versions
 		static public GameIdentifier[] GetIdentifiersFromVersion(uint version) => version switch
 		{
 			GameVersions.TGE10 or GameVersions.TFD => [GameIdentifier.TGE10, GameIdentifier.ForgettableDungeon],
+			GameVersions.VSIDE => [GameIdentifier.VSide],
+			GameVersions.MBXP => [GameIdentifier.MBXP],
 			GameVersions.TGE14 => [GameIdentifier.TGE14],
 			GameVersions.TCON => [GameIdentifier.TCON],
 			GameVersions.T2 => [GameIdentifier.Tribes2],
@@ -77,7 +85,7 @@ namespace DSO.Versions
 		static public Ops? CreateOps(GameIdentifier identifier) => identifier switch
 		{
 			GameIdentifier.Auto => null,
-			GameIdentifier.TGE10 or GameIdentifier.Tribes2 => new Ops(),
+			GameIdentifier.TGE10 or GameIdentifier.Tribes2 or GameIdentifier.VSide or GameIdentifier.MBXP => new Ops(),
 			GameIdentifier.TGE14 => new TGE14.Ops(),
 			GameIdentifier.TCON => new Constructor.Ops(),
 			GameIdentifier.ForgettableDungeon => new TFD.Ops(),
@@ -90,7 +98,7 @@ namespace DSO.Versions
 		static public FileLoader? CreateFileLoader(GameIdentifier identifier) => identifier switch
 		{
 			GameIdentifier.Auto => null,
-			GameIdentifier.TGE10 or GameIdentifier.Tribes2 => new FileLoader(),
+			GameIdentifier.TGE10 or GameIdentifier.Tribes2 or GameIdentifier.VSide or GameIdentifier.MBXP => new FileLoader(),
 			GameIdentifier.TGE14 => new TGE14.FileLoader(),
 			GameIdentifier.TCON => new Constructor.FileLoader(),
 			GameIdentifier.ForgettableDungeon => new TFD.FileLoader(),

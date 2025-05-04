@@ -2,6 +2,7 @@
   "profiles": {
     "DSO": {
       "commandName": "Project",
+      "commandLineArgs": "\"D:\\Marbleblast\\MBXP\"",
       "workingDirectory": "bin"
     }
   }

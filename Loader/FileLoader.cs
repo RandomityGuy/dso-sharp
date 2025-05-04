@@ -117,7 +117,7 @@ namespace DSO.Loader
 
 			for (uint i = 0; i < size; i++)
 			{
-				data.Code[i] = _reader.ReadOp();
+				data.Code[i] = _reader.ReadOp(data.Version == 34);
 			}
 
 			return new(size, lineBreaks);
